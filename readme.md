@@ -18,5 +18,5 @@ tinkr> fetching nesbot/carbon...
 I did this because I wanted something to let me quickly test packages
 outside of real projects.
 
-License: BSD 2-Clause
+License: MIT
 

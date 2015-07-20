@@ -8,7 +8,12 @@
         "symfony/process": "^2.7",
         "symfony/filesystem": "^2.7"
     },
-    "license": "BSD",
+    "license": "MIT",
+    "autoload": {
+      "psr-4": {
+        "EFrane\\Tinkr\\": "src/"
+      }
+    },
     "authors": [
         {
             "name": "Stefan Graupner",

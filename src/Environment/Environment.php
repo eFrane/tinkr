@@ -22,23 +22,14 @@ class Environment
     $this->setup();
   }
 
-  protected function setup()
-  {
-    if (!is_dir($this->path))
-      mkdir($this->path, 0777, true);
-
-    if ($this->temporary)
-    {
-      // remove everything if the session is temporary
-      register_shutdown_function(function () {
-        (new Filesystem())->remove($this->path);
-      });
-    }
-  }
-
   public function getPath()
   {
     return $this->path;
+  }
+
+  public function isTemporary()
+  {
+    return $this->temporary;
   }
 
   /**
@@ -53,5 +44,19 @@ class Environment
     $config->setHistoryFile($this->path . DIRECTORY_SEPARATOR . 'tinkr.history');
 
     return $config;
+  }
+
+  protected function setup()
+  {
+    if (!is_dir($this->path))
+      mkdir($this->path, 0777, true);
+
+    if ($this->temporary)
+    {
+      // remove everything if the session is temporary
+      register_shutdown_function(function () {
+        (new Filesystem())->remove($this->path);
+      });
+    }
   }
 }

@@ -1,5 +1,7 @@
 <?php namespace EFrane\Tinkr\Console\Commands;
 
+use EFrane\Tinkr\Console\App;
+
 use EFrane\Tinkr\Environment\Environment;
 
 use Symfony\Component\Console\Command\Command;
@@ -8,7 +10,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 use Psy\Shell;
-use Psy\Configuration;
 
 class Interactive extends Command
 {
@@ -40,10 +41,10 @@ class Interactive extends Command
   {
     $this->setupEnvironment($input);
 
-    $config = new Configuration();
-    //$config->setHistoryFile();
+    $output->writeln('<info>Starting tinkr console at `'.$this->env->getPath().'`</info>');
 
-    $shell = new Shell($config);
+    $shellConfig = $this->env->getPsyShConfiguration();
+    $shell = new Shell($shellConfig);
 
     $shell->run();
   }

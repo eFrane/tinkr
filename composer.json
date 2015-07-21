@@ -6,7 +6,8 @@
         "psy/psysh": "^0.5.2",
         "symfony/console": "^2.7",
         "symfony/process": "^2.7",
-        "symfony/filesystem": "^2.7"
+        "symfony/filesystem": "^2.7",
+        "composer/composer": "^1.0@dev"
     },
     "license": "MIT",
     "autoload": {
@@ -20,5 +21,5 @@
             "email": "stefan.graupner@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

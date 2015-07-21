@@ -1,6 +1,7 @@
 <?php namespace EFrane\Tinkr\Console;
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
 
 class App extends Application
 {
@@ -9,9 +10,28 @@ class App extends Application
   public function __construct()
   {
     parent::__construct('tinkr', self::TINKR_VERSION);
+  }
 
-    $this->add(new Commands\Interactive);
-    $this->setDefaultCommand('interactive');
+  public function getDefinition()
+  {
+    $inputDefinition = parent::getDefinition();
+    $inputDefinition->setArguments();
+
+    return $inputDefinition;
+  }
+
+  protected function getDefaultCommands()
+  {
+    $commands = parent::getDefaultCommands();
+
+    $commands[] = new Commands\Interactive;
+
+    return $commands;
+  }
+
+  protected function getCommandName(InputInterface $input)
+  {
+    return 'interactive';
   }
 }
 

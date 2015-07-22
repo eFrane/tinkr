@@ -54,10 +54,11 @@ class Environment
     $config->setHistoryFile($this->path . '/tinkr.history');
     $config->setHistorySize(0);
 
-    $config->setDefaultIncludes([
-      $_ENV['HOME'] . '/.composer/vendor/autoload.php',
-      realpath('vendor/autoload.php')
-    ]);
+    $includes = [$_ENV['HOME'] . '/.composer/vendor/autoload.php'];
+    if (file_exists('vendor/autoload.php'))
+      $includes[] = realpath('vendor/autoload.php');
+
+    $config->setDefaultIncludes($includes);
 
     $config->setDataDir('.');
 

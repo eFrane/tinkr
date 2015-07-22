@@ -1,8 +1,6 @@
 <?php namespace EFrane\Tinkr\Environment;
 
 use Composer\Console\Application;
-use Composer\Repository\CompositeRepository;
-use Composer\Repository\InstalledFilesystemRepository;
 use Symfony\Component\Console\Input\ArrayInput;
 
 class Composer

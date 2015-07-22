@@ -37,25 +37,6 @@ class Load extends Command implements \SplSubject
         $this->getApplication()->renderException($e, $output);
       }
     }
-
-    /*
-    $results = $composer->find($input->getArgument('packages'));
-
-    foreach ($results as $result)
-    {
-      /* @var \EFrane\Tinkr\Environment\ComposerResult $result *
-      if ($result->isAmbiguous())
-      {
-        $output->writeln("Found multiple results of {$result->getQuery()}, please select one:");
-        $output->writeln($result->getResults());
-
-        // TODO: Finish select dialog
-        $solution = 0;
-        $result->resolve($solution);
-      }
-
-    }
-    */
   }
 
   public function attach(SplObserver $observer)

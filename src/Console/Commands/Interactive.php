@@ -4,6 +4,7 @@ use EFrane\Tinkr\Environment\Environment;
 use EFrane\Tinkr\Environment\Shell;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,6 +32,11 @@ class Interactive extends Command
         null,
         InputOption::VALUE_OPTIONAL,
         'If set, the tinkr session will be persistently stored at the specified path, this is mutually exclusive with --useCurrentDir'
+      )
+      ->addArgument(
+        'initPackages',
+        InputArgument::OPTIONAL | InputArgument::IS_ARRAY,
+        'You may specify any number of packages to be loaded automatically on startup'
       );
   }
 
@@ -43,6 +49,8 @@ class Interactive extends Command
       : 'Starting tinkr at `'.$this->env->getPath().'`...';
 
     $output->writeln('<info>'.$message.'</info>');
+
+    app('composer')->init($input->getArgument('initPackages'));
 
     Shell::make($this->env)->run();
   }

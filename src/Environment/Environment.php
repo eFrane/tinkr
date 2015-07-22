@@ -5,6 +5,7 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Environment
 {
+  protected $id        = '';
   protected $path      = '';
   protected $temporary = false;
 
@@ -12,11 +13,16 @@ class Environment
   {
     if (is_null($path))
     {
-      $this->path = sys_get_temp_dir() .'/'. uniqid('tinkr_');
+      $this->id = uniqid('tinkr_');
+
+      $this->path = sys_get_temp_dir() .'/'. $this->id;
       $this->temporary = true;
     } else
     {
       $this->path = $path;
+
+      $pathToId = explode(DIRECTORY_SEPARATOR, $path);
+      $this->id = array_pop($pathToId);
     }
 
     $this->setup();
@@ -42,21 +48,46 @@ class Environment
     $config = new Configuration();
 
     $config->setHistoryFile($this->path . DIRECTORY_SEPARATOR . 'tinkr.history');
+    $config->setDefaultIncludes(['./vendor/autoload.php']);
 
     return $config;
   }
 
+  public function getComposerConfiguration()
+  {
+    $authorName  = trim(shell_exec('git config user.name'));
+    $authorEMail = trim(shell_exec('git config user.email'));
+
+    return [
+      'defaultArguments' =>
+      [
+        '--no-interaction' => true,
+        '--working-dir' => $this->path
+      ],
+      'packageName' => $_ENV['USER'] . '/' . 'tinkr_' . $this->id,
+      'author' => sprintf('%s <%s>', $authorName, $authorEMail)
+    ];
+  }
+
   protected function setup()
   {
+    $fs = new Filesystem();
+
     if (!is_dir($this->path))
-      mkdir($this->path, 0777, true);
+      $fs->mkdir($this->path);
 
     if ($this->temporary)
     {
       // remove everything if the session is temporary
-      register_shutdown_function(function () {
-        (new Filesystem())->remove($this->path);
+      register_shutdown_function(function () use ($fs) {
+        $fs->remove($this->path);
       });
     }
+
+    app()->instance('EFrane\Tinkr\Environment\Environment', $this);
+    app()->alias('EFrane\Tinkr\Environment\Environment', 'env');
+
+    app()->bind('composer', 'EFrane\Tinkr\Environment\Composer');
+    app()->bind('shell', 'EFrane\Tinkr\Environment\Shell');
   }
 }

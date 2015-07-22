@@ -10,14 +10,22 @@ class Shell
    * @var PsyShell
    */
   protected $psy = null;
+  protected $oldWorkingDirectory = '';
 
   public function __construct(Environment $env)
   {
-    $shellConfig = $env->getPsyShConfiguration();
-    $this->psy = new PsyShell($shellConfig);
+    $this->oldWorkingDirectory = getcwd();
+    chdir($env->getPath());
+
+    $this->psy = new PsyShell($env->getPsyShConfiguration());
 
     $this->psy->add(new Load);
     $this->psy->add(new Export);
+  }
+
+  public function __destruct()
+  {
+    chdir($this->oldWorkingDirectory);
   }
 
   /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9ea6d4a1c5f304716f3c23fddb1223de",
+    "hash": "a4d1436580aa4ce1cfa66fd2035df2a8",
     "packages": [
         {
             "name": "composer/composer",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "00c26791faeb83da8476b54bcc20596cf754362e"
+                "reference": "c6cc6dd6070871f4b198ed39f76dd8047c116b02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/00c26791faeb83da8476b54bcc20596cf754362e",
-                "reference": "00c26791faeb83da8476b54bcc20596cf754362e",
+                "url": "https://api.github.com/repos/composer/composer/zipball/c6cc6dd6070871f4b198ed39f76dd8047c116b02",
+                "reference": "c6cc6dd6070871f4b198ed39f76dd8047c116b02",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +76,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2015-07-20 17:29:14"
+            "time": "2015-07-21 13:46:38"
         },
         {
             "name": "composer/spdx-licenses",
@@ -170,6 +170,91 @@
             ],
             "description": "implementation of xdg base directory specification for php",
             "time": "2014-10-24 07:27:01"
+        },
+        {
+            "name": "illuminate/container",
+            "version": "5.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
+                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.1.*",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Container\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Container package.",
+            "homepage": "http://laravel.com",
+            "time": "2015-06-13 00:40:15"
+        },
+        {
+            "name": "illuminate/contracts",
+            "version": "5.1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "5db115793201700886f60c895f4024d34188deee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/5db115793201700886f60c895f4024d34188deee",
+                "reference": "5db115793201700886f60c895f4024d34188deee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Contracts package.",
+            "homepage": "http://laravel.com",
+            "time": "2015-07-14 01:36:14"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -326,7 +411,7 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v1.4.0",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
@@ -785,23 +870,23 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v2.7.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "fde603d9f4b2418ff0f0315b93eb039c9aa41205"
+                "reference": "5e92464760ae3330c424ea69672f40ce0eed4298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/fde603d9f4b2418ff0f0315b93eb039c9aa41205",
-                "reference": "fde603d9f4b2418ff0f0315b93eb039c9aa41205",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/5e92464760ae3330c424ea69672f40ce0eed4298",
+                "reference": "5e92464760ae3330c424ea69672f40ce0eed4298",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+                "symfony/phpunit-bridge": "~2.8|~3.0"
             },
             "suggest": {
                 "ext-symfony_debug": ""
@@ -809,7 +894,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "3.0-dev"
                 }
             },
             "autoload": {
@@ -840,13 +925,17 @@
                 "debug",
                 "dump"
             ],
-            "time": "2015-07-01 12:07:40"
+            "time": "2015-07-02 15:20:21"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "psy/psysh": 0,
+        "symfony/console": 0,
+        "symfony/process": 0,
+        "symfony/filesystem": 0,
         "composer/composer": 20
     },
     "prefer-stable": false,

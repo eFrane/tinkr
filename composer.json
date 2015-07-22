@@ -11,9 +11,10 @@
     },
     "license": "MIT",
     "autoload": {
-      "psr-4": {
-        "EFrane\\Tinkr\\": "src/"
-      }
+        "psr-4": {
+            "EFrane\\Tinkr\\": "src/"
+        },
+        "files": ["src/helpers.php"]
     },
     "authors": [
         {

@@ -74,9 +74,9 @@ class Environment
       'defaultArguments' =>
       [
         '--no-interaction' => true,
-        '--working-dir' => $this->path
+        '--working-dir' => $this->path,
       ],
-      'packageName' => $_ENV['USER'] . '/' . 'tinkr_' . $this->id,
+      'packageName' => strtolower($_ENV['USER']) . '/' . $this->id,
       'author' => sprintf('%s <%s>', $authorName, $authorEMail)
     ];
   }
@@ -94,10 +94,10 @@ class Environment
       });
     }
 
-    app()->instance('EFrane\Tinkr\Environment\Environment', $this);
-    app()->alias('EFrane\Tinkr\Environment\Environment', 'env');
+    tinkr()->instance('EFrane\Tinkr\Environment\Environment', $this);
+    tinkr()->alias('EFrane\Tinkr\Environment\Environment', 'env');
 
-    app()->bind('composer', 'EFrane\Tinkr\Environment\Composer');
-    app()->bind('shell', 'EFrane\Tinkr\Environment\Shell');
+    tinkr()->bind('composer', 'EFrane\Tinkr\Environment\Composer');
+    tinkr()->bind('shell', 'EFrane\Tinkr\Environment\Shell');
   }
 }

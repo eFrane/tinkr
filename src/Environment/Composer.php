@@ -40,13 +40,20 @@ class Composer
    **/
   public function install($packageDescriptor)
   {
-    $this->runComposerCommand('require', [$packageDescriptor]);
+    if (!is_string($packageDescriptor)) throw new \InvalidArgumentException("Package descriptor must be a string");
+
+    $this->runComposerCommand('require',
+      [
+        '--no-update' => true,
+        $packageDescriptor => true
+      ]
+    );
   }
 
   public function init(array $packages = [])
   {
     // make sure that we only init once
-    if (file_exists($this->config['defaultArguments']['--working-dir'] . DIRECTORY_SEPARATOR . 'composer.json'))
+    if (file_exists($this->config['defaultArguments']['--working-dir'] . '/composer.json'))
       return;
 
     $needsInstall = false;

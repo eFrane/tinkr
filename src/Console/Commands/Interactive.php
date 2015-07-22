@@ -1,20 +1,22 @@
 <?php namespace EFrane\Tinkr\Console\Commands;
 
 use EFrane\Tinkr\Environment\Environment;
-use EFrane\Tinkr\Environment\Shell;
 
+use SplSubject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Interactive extends Command
+class Interactive extends Command implements \SplObserver
 {
   /**
    * @var Environment
    **/
   protected $env = null;
+
+  protected $keepRunning = false;
 
   protected function configure()
   {
@@ -50,8 +52,12 @@ class Interactive extends Command
 
     $output->writeln('<info>'.$message.'</info>');
 
-    app('composer')->init($input->getArgument('initPackages'));
-    app('shell')->run($input, null);
+    tinkr('composer')->init($input->getArgument('initPackages'));
+
+    tinkr('shell')->run();
+
+    if ($this->env->isTemporary())
+      $output->writeln('<info>Cleaning up temporary tinkr environment...</info>');
   }
 
   /**
@@ -66,6 +72,13 @@ class Interactive extends Command
     } else {
       $this->env = new Environment();
     }
+  }
+
+  public function update(SplSubject $subject)
+  {
+    /* @var \EFrane\Tinkr\Environment\Shell $shell */
+    $shell = tinkr('shell');
+    $shell->reset();
   }
 }
 

@@ -34,4 +34,9 @@ class Shell
   {
     return $this->psy->run($input, $output);
   }
+
+  public function reset()
+  {
+    // TODO: implement shell reload without exiting the app
+  }
 }

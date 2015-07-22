@@ -60,7 +60,7 @@ class Environment
 
     $config->setDefaultIncludes($includes);
 
-    $config->setDataDir('.');
+    $config->setDataDir(realpath($this->path));
 
     return $config;
   }
@@ -74,7 +74,7 @@ class Environment
       'defaultArguments' =>
       [
         '--no-interaction' => true,
-        '--working-dir' => $this->path,
+        '--working-dir' => realpath($this->path),
       ],
       'packageName' => strtolower($_ENV['USER']) . '/' . $this->id,
       'author' => sprintf('%s <%s>', $authorName, $authorEMail)

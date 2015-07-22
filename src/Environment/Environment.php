@@ -9,6 +9,8 @@ class Environment
   protected $path      = '';
   protected $temporary = false;
 
+  protected $fs = null;
+
   public function __construct($path = '')
   {
     if (is_null($path))
@@ -24,6 +26,8 @@ class Environment
       $pathToId = explode(DIRECTORY_SEPARATOR, $path);
       $this->id = array_pop($pathToId);
     }
+
+    $this->fs = new Filesystem();
 
     $this->setup();
   }
@@ -47,8 +51,15 @@ class Environment
   {
     $config = new Configuration();
 
-    $config->setHistoryFile($this->path . DIRECTORY_SEPARATOR . 'tinkr.history');
-    $config->setDefaultIncludes(['./vendor/autoload.php']);
+    $config->setHistoryFile($this->path . '/tinkr.history');
+    $config->setHistorySize(0);
+
+    $config->setDefaultIncludes([
+      $_ENV['HOME'] . '/.composer/vendor/autoload.php',
+      realpath('vendor/autoload.php')
+    ]);
+
+    $config->setDataDir('.');
 
     return $config;
   }
@@ -71,16 +82,14 @@ class Environment
 
   protected function setup()
   {
-    $fs = new Filesystem();
-
     if (!is_dir($this->path))
-      $fs->mkdir($this->path);
+      $this->fs->mkdir($this->path);
 
     if ($this->temporary)
     {
       // remove everything if the session is temporary
-      register_shutdown_function(function () use ($fs) {
-        $fs->remove($this->path);
+      register_shutdown_function(function () {
+        $this->fs->remove($this->path);
       });
     }
 

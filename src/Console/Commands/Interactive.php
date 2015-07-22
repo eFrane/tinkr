@@ -51,8 +51,7 @@ class Interactive extends Command
     $output->writeln('<info>'.$message.'</info>');
 
     app('composer')->init($input->getArgument('initPackages'));
-
-    Shell::make($this->env)->run();
+    app('shell')->run($input, null);
   }
 
   /**

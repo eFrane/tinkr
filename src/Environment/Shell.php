@@ -3,6 +3,8 @@
 use EFrane\Tinkr\Console\Commands\Export;
 use EFrane\Tinkr\Console\Commands\Load;
 use Psy\Shell as PsyShell;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Shell
 {
@@ -28,17 +30,8 @@ class Shell
     chdir($this->oldWorkingDirectory);
   }
 
-  /**
-   * @param Environment $env
-   * @return Shell
-   */
-  public static function make(Environment $env)
+  public function run(InputInterface $input = null, OutputInterface $output = null)
   {
-    return new self($env);
-  }
-
-  public function run()
-  {
-    return $this->psy->run();
+    return $this->psy->run($input, $output);
   }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "36ba5111f06427e2b0617a9f7ed2b00a",
+    "hash": "877733564e831d664b8ddad9e17ebbdd",
     "packages": [
         {
             "name": "composer/composer",
@@ -173,26 +173,26 @@
         },
         {
             "name": "illuminate/container",
-            "version": "5.1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32"
+                "reference": "9c27569a4e639e6ffbab1f56b4c862f23890a4de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
-                "reference": "cfec9b4a49b0c4be1fb34d6ed948245ea36a1f32",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/9c27569a4e639e6ffbab1f56b4c862f23890a4de",
+                "reference": "9c27569a4e639e6ffbab1f56b4c862f23890a4de",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.1.*",
+                "illuminate/contracts": "5.2.*",
                 "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "5.2-dev"
                 }
             },
             "autoload": {
@@ -212,20 +212,20 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-13 00:40:15"
+            "time": "2015-06-13 22:48:28"
         },
         {
             "name": "illuminate/contracts",
-            "version": "5.1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "5db115793201700886f60c895f4024d34188deee"
+                "reference": "0bf2ac25a73c40b2d401fc7db58f6b0788ccc312"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/5db115793201700886f60c895f4024d34188deee",
-                "reference": "5db115793201700886f60c895f4024d34188deee",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/0bf2ac25a73c40b2d401fc7db58f6b0788ccc312",
+                "reference": "0bf2ac25a73c40b2d401fc7db58f6b0788ccc312",
                 "shasum": ""
             },
             "require": {
@@ -234,7 +234,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "5.2-dev"
                 }
             },
             "autoload": {
@@ -254,7 +254,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2015-07-14 01:36:14"
+            "time": "2015-07-17 14:40:14"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -713,16 +713,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.7.2",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "8cf484449130cabfd98dcb4694ca9945802a21ed"
+                "reference": "fd85e7517e79a2bceafcee8f7e8b7bbd0919a90a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/8cf484449130cabfd98dcb4694ca9945802a21ed",
-                "reference": "8cf484449130cabfd98dcb4694ca9945802a21ed",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/fd85e7517e79a2bceafcee8f7e8b7bbd0919a90a",
+                "reference": "fd85e7517e79a2bceafcee8f7e8b7bbd0919a90a",
                 "shasum": ""
             },
             "require": {
@@ -730,9 +730,9 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.1",
-                "symfony/phpunit-bridge": "~2.7",
-                "symfony/process": "~2.1"
+                "symfony/event-dispatcher": "~2.1|~3.0.0",
+                "symfony/phpunit-bridge": "~2.7|~3.0.0",
+                "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -742,7 +742,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -766,32 +766,32 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:07:40"
+            "time": "2015-07-16 12:22:14"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.7.2",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "2d7b2ddaf3f548f4292df49a99d19c853d43f0b8"
+                "reference": "9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/2d7b2ddaf3f548f4292df49a99d19c853d43f0b8",
-                "reference": "2d7b2ddaf3f548f4292df49a99d19c853d43f0b8",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e",
+                "reference": "9f70c5625a32b2f1e6fc37222f52b4e0eb437b0e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -815,7 +815,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-09 16:07:40"
+            "time": "2015-07-09 16:11:14"
         },
         {
             "name": "symfony/finder",
@@ -868,28 +868,28 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.7.2",
+            "version": "2.8.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "48aeb0e48600321c272955132d7606ab0a49adb3"
+                "reference": "25d74c90d79e66905013714d8d188e4ccb5ff466"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/48aeb0e48600321c272955132d7606ab0a49adb3",
-                "reference": "48aeb0e48600321c272955132d7606ab0a49adb3",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/25d74c90d79e66905013714d8d188e4ccb5ff466",
+                "reference": "25d74c90d79e66905013714d8d188e4ccb5ff466",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
+                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.7-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -913,7 +913,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2015-07-01 11:25:50"
+            "time": "2015-07-01 14:16:54"
         },
         {
             "name": "symfony/translation",

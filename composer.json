@@ -7,8 +7,9 @@
         "symfony/console": "^2.7",
         "symfony/process": "^2.7",
         "symfony/filesystem": "^2.7",
-        "composer/composer": "^1.0@dev",
-        "nesbot/carbon": "dev-master"
+        "composer/composer": "dev-master",
+        "nesbot/carbon": "dev-master",
+        "illuminate/container": "^5.1"
     },
     "license": "MIT",
     "autoload": {

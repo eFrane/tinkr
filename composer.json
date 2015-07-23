@@ -1,6 +1,6 @@
 {
     "name": "efrane/tinkr",
-    "description": "tinkr thing",
+    "description": "A tinkering tool for PHP",
     "type": "project",
     "require": {
         "psy/psysh": "^0.5.2",

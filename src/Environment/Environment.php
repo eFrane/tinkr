@@ -55,8 +55,9 @@ class Environment
     $config->setHistorySize(0);
 
     $includes = [$_ENV['HOME'] . '/.composer/vendor/autoload.php'];
-    if (file_exists('vendor/autoload.php'))
-      $includes[] = realpath('vendor/autoload.php');
+
+    if (file_exists($this->path . '/vendor/autoload.php'))
+      $includes[] = realpath($this->path . '/vendor/autoload.php');
 
     $config->setDefaultIncludes($includes);
 

@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class App extends Application
 {
-  const TINKR_VERSION = '0.1.0';
+  const TINKR_VERSION = '0.5.0';
 
   private static $container = null;
 
@@ -22,6 +22,11 @@ class App extends Application
   public static function container()
   {
     return self::$container;
+  }
+
+  public static function tinkrVersion()
+  {
+    return 'tinkr v'.static::TINKR_VERSION;
   }
 
   public function getDefinition()

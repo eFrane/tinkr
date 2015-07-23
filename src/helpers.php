@@ -2,8 +2,6 @@
 
 use EFrane\Tinkr\Console\App;
 
-// FIXME!!!!!!
-
 if (!function_exists('tinkr'))
 {
   function tinkr($name = '')
@@ -14,5 +12,13 @@ if (!function_exists('tinkr'))
     }
 
     return App::container();
+  }
+}
+
+if (!function_exists('tinkr_version'))
+{
+  function tinkr_version()
+  {
+    return App::tinkrVersion();
   }
 }

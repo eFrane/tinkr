@@ -2,14 +2,13 @@
 
 use EFrane\Tinkr\Environment\Environment;
 
-use SplSubject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Interactive extends Command implements \SplObserver
+class Interactive extends Command
 {
   /**
    * @var Environment
@@ -24,16 +23,16 @@ class Interactive extends Command implements \SplObserver
       ->setName('interactive')
       ->setDescription('Do the tinkering')
       ->addOption(
-        'useCurrentDir', 
+        'use-current-dir',
         null, 
         InputOption::VALUE_NONE, 
         'If set, the tinkr will run in the current working directory instead of a clean environment'
       )
       ->addOption(
-        'saveTo',
-        null,
+        'path',
+        'p',
         InputOption::VALUE_OPTIONAL,
-        'If set, the tinkr session will be persistently stored at the specified path, this is mutually exclusive with --useCurrentDir'
+        'If set, the tinkr session will be persistently stored at the specified path, this is mutually exclusive with --use-current-dir'
       )
       ->addArgument(
         'initPackages',
@@ -47,10 +46,10 @@ class Interactive extends Command implements \SplObserver
     $this->setupEnvironment($input);
 
     $message = ($this->env->isTemporary())
-      ? 'Starting tinkr...'
-      : 'Starting tinkr at `'.$this->env->getPath().'`...';
+      ? 'Preparing ' . tinkr_version() . '...'
+      : 'Preparing ' . tinkr_version() . ' at `' . $this->env->getPath() . '`...';
 
-    $output->writeln('<info>'.$message.'</info>');
+    $output->writeln('<info>' . $message . '</info>');
 
     tinkr('composer')->init($input->getArgument('initPackages'));
 
@@ -65,20 +64,13 @@ class Interactive extends Command implements \SplObserver
    **/
   protected function setupEnvironment(InputInterface $input)
   {
-    if ($input->hasOption('saveTo')) {
-      $this->env = new Environment($input->getOption('saveTo'));
-    } else if ($input->hasOption('useCurrentDir')) {
+    if ($input->hasOption('path')) {
+      $this->env = new Environment($input->getOption('path'));
+    } else if ($input->hasOption('use-current-dir')) {
       $this->env = new Environment(getcwd());
     } else {
       $this->env = new Environment();
     }
-  }
-
-  public function update(SplSubject $subject)
-  {
-    /* @var \EFrane\Tinkr\Environment\Shell $shell */
-    $shell = tinkr('shell');
-    $shell->reset();
   }
 }
 

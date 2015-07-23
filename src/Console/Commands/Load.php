@@ -1,8 +1,5 @@
 <?php namespace EFrane\Tinkr\Console\Commands;
 
-use SplObserver;
-use SplSubject;
-
 use Psy\Command\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,10 +20,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @package EFrane\Tinkr\Console\Commands
  **/
-class Load extends Command implements SplSubject
+class Load extends Command
 {
-  protected $observers = [];
-
   protected function configure()
   {
     $this
@@ -49,40 +44,19 @@ class Load extends Command implements SplSubject
       try
       {
         $composer->install($package);
-        $this->notify();
+
+        $output->writeln('<info>Resetting includes...</info>');
+
+        /* @var \Psy\Shell $app */
+        $app = $this->getApplication();
+
+        $app->resetCodeBuffer();
+        $app->addInput("require 'vendor/autoload.php'");
       }
       catch (\Exception $e)
       {
         $this->getApplication()->renderException($e, $output);
       }
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function attach(SplObserver $observer)
-  {
-    $this->observers[get_class($observer)] = $observer;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function detach(SplObserver $observer)
-  {
-    unset($this->observers[get_class($observer)]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function notify()
-  {
-    foreach ($this->observers as $observer)
-    {
-      /* @var \SplObserver $observer */
-      $observer->update($this);
     }
   }
 }

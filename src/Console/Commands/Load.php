@@ -1,14 +1,32 @@
 <?php namespace EFrane\Tinkr\Console\Commands;
 
+use SplObserver;
+use SplSubject;
+
 use Psy\Command\Command;
 
-use SplObserver;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Load extends Command implements \SplSubject
+/**
+ * Load Command - Load a package into the tinkr environment
+ *
+ * The load command integrates composer into the psysh
+ * instance of the tinkr environment.
+ *
+ * It's as easy as `>>> load symfony/yaml` to integrate
+ * a package into the testbed. This will automatically
+ * `composer require` the package and reload the
+ * shell to give access to the package.
+ *
+ * @package EFrane\Tinkr\Console\Commands
+ **/
+class Load extends Command implements SplSubject
 {
+  protected $observers = [];
+
   protected function configure()
   {
     $this
@@ -31,6 +49,7 @@ class Load extends Command implements \SplSubject
       try
       {
         $composer->install($package);
+        $this->notify();
       }
       catch (\Exception $e)
       {
@@ -39,18 +58,31 @@ class Load extends Command implements \SplSubject
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function attach(SplObserver $observer)
   {
-    // TODO: Implement attach() method.
+    $this->observers[get_class($observer)] = $observer;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function detach(SplObserver $observer)
   {
-    // TODO: Implement detach() method.
+    unset($this->observers[get_class($observer)]);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function notify()
   {
-    // TODO: Implement notify() method.
+    foreach ($this->observers as $observer)
+    {
+      /* @var \SplObserver $observer */
+      $observer->update($this);
+    }
   }
 }

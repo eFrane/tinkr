@@ -1,7 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+$dir = __DIR__;
+
+if (($pos = strpos($dir, '/.composer')) > 0)
+{
+  $dir = substr($dir, 0, $pos) . '/.composer';
+} else
+{
+  $dir .= '/../';
+}
+
+require $dir.'/vendor/autoload.php';
 
 return (new EFrane\Tinkr\Console\App)->run();
-

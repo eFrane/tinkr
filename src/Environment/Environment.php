@@ -1,5 +1,6 @@
 <?php namespace EFrane\Tinkr\Environment;
 
+use Carbon\Carbon;
 use Psy\Configuration;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -8,6 +9,9 @@ class Environment
   protected $id        = '';
   protected $path      = '';
   protected $temporary = false;
+
+  protected $cwd          = '';
+  protected $sessionStart = null;
 
   protected $fs = null;
 
@@ -40,6 +44,16 @@ class Environment
   public function isTemporary()
   {
     return $this->temporary;
+  }
+
+  public function getCWD()
+  {
+    return $this->cwd;
+  }
+
+  public function getSessionStart()
+  {
+    return $this->sessionStart->format('dmy-hi');
   }
 
   /**
@@ -84,6 +98,9 @@ class Environment
 
   protected function setup()
   {
+    $this->cwd = getcwd();
+    $this->sessionStart = Carbon::now();
+
     if (!is_dir($this->path))
       $this->fs->mkdir($this->path);
 

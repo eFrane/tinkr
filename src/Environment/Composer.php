@@ -1,6 +1,7 @@
 <?php namespace EFrane\Tinkr\Environment;
 
 use Composer\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\ArrayInput;
 
 class Composer
@@ -40,20 +41,16 @@ class Composer
    **/
   public function install($packageDescriptor)
   {
-    if (!is_string($packageDescriptor)) throw new \InvalidArgumentException("Package descriptor must be a string");
+    if (!is_string($packageDescriptor))
+      throw new \InvalidArgumentException("Package descriptor must be a string");
 
-    $this->runComposerCommand('require',
-      [
-        '--no-update' => true,
-        $packageDescriptor => true
-      ]
-    );
+    $this->runComposerCommand('require', [], $packageDescriptor);
   }
 
   public function init(array $packages = [])
   {
     // make sure that we only init once
-    if (file_exists($this->config['defaultArguments']['--working-dir'] . '/composer.json'))
+    if (file_exists($this->config['defaultParameters']['--working-dir'] . '/composer.json'))
       return;
 
     $needsInstall = false;
@@ -89,23 +86,34 @@ class Composer
   }
 
   /**
-   * @param $commandName
+   * @param string $commandName
    * @param array|string $arguments
+   * @param array|string $parameters
    **/
-  protected function runComposerCommand($commandName, $arguments = [])
+  protected function runComposerCommand($commandName, $parameters = [], $arguments = [])
   {
-    if (is_string($arguments)) $arguments = [$arguments];
+    $arguments = (array) $arguments;
+    $parameters = (array) $parameters;
 
     $input = new ArrayInput(
       array_merge(
         ['command' => $commandName],
-        $this->config['defaultArguments'],
+        $this->config['defaultParameters'],
+        $parameters,
         $arguments
       )
     );
 
-    $composer = new Application();
-    $composer->setAutoExit(false);
-    $composer->run($input);
+    // this is ugly but require doesn't seem to work otherwise
+
+    if ($commandName === 'require')
+    {
+      exec('composer '.$input);
+    } else
+    {
+      $composer = new Application();
+      $composer->setAutoExit(false);
+      $composer->run($input);
+    }
   }
 }

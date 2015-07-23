@@ -71,9 +71,9 @@ class Environment
     $authorEMail = trim(shell_exec('git config user.email'));
 
     return [
-      'defaultArguments' =>
+      'defaultParameters' =>
       [
-        '--no-interaction' => true,
+        '--no-interaction',
         '--working-dir' => realpath($this->path),
       ],
       'packageName' => strtolower($_ENV['USER']) . '/' . $this->id,

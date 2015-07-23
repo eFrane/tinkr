@@ -18,6 +18,8 @@ class Shell
   {
     $this->psy = new PsyShell($env->getPsyShConfiguration());
 
+    $this->psy->setAutoExit(false);
+
     $this->psy->add(new Load);
     $this->psy->add(new Export);
     $this->psy->add(new PWD);

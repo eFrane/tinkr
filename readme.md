@@ -57,7 +57,5 @@ $ composer global require efrane/tinkr
 
 **Don't forget to add your .composer/vendor/bin to your $PATH**
 
-## Why?
-
 License: MIT
 

@@ -7,7 +7,7 @@
         "symfony/console": "^2.7",
         "symfony/process": "^2.7",
         "symfony/filesystem": "^2.7",
-        "composer/composer": "dev-master",
+        "composer/composer": "*",
         "nesbot/carbon": "dev-master",
         "illuminate/container": "^5.1"
     },
